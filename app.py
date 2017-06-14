@@ -9,6 +9,10 @@ rate_thresh = 40
 
 app = Flask(__name__, template_folder="templates")
 
+@app.route("/dashboard")
+def dashboard():
+	return render_template("dashboard.html")
+
 @app.route("/", methods=["GET", "POST"])
 def index():
 

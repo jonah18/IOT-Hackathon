@@ -28,7 +28,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -39,10 +39,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a onclick="toggle()">Dashboard</a>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <a onclick="toggle()">Configurations</a>
                 </li>
                 <li>
                     <a href="#">Overview</a>
@@ -61,17 +61,26 @@
                 </li>
             </ul>
         </div>
+
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    <div id="config" style='display:block;'>
+                        <form action="/" method="POST">
+
+                            Max Byte Size:
+                            <input type="text" name="byte" value="{{ request.form['byte'] }}"></br>
+
+                            Max Rate of Network Traffic:
+                            <input type="text" name="rate" value="{{ request.form['rate'] }}">
+                            <input type="submit" name="my-form" value="Save">
+                        </form>
+                    </div>
+                    <div id="dashboard" style='display:none;'>
+                        <iframe src="https://search-houseshark-ixotnqxkzathhe3en6ql2egzha.us-east-1.es.amazonaws.com/_plugin/kibana/app/kibana#/dashboard/c852dc70-50d1-11e7-a25d-09f5e0eb4084?embed=true&_g=(refreshInterval%3A('%24%24hashKey'%3A'object%3A2189'%2Cdisplay%3A'5%20seconds'%2Cpause%3A!f%2Csection%3A1%2Cvalue%3A5000)%2Ctime%3A(from%3A'2017-06-13T19%3A56%3A10.738Z'%2Cinterval%3A'1s'%2Cmode%3Aabsolute%2Ctimezone%3AAmerica%2FMexico_City%2Cto%3A'2017-06-13T19%3A56%3A31.118Z'))" height="650" width="1000"></iframe>
                     </div>
                 </div>
             </div>
@@ -87,12 +96,17 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+    <script type="text/javascript">
+
+        function toggle() {
+            var dash = document.getElementById('dashboard');
+            var config = document.getElementById('config');
+
+            var temp = dash.style.display;
+            dash.style.display = config.style.display;
+            config.style.display = temp;
+        }
+
     </script>
 
 </body>
