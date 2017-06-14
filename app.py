@@ -15,9 +15,6 @@ def index():
 		byte_thresh = int(request.form['byte'])
 		rate_thresh = int(request.form['rate'])
 
-		print "Bytes: " + str(byte_thresh)
-		print "Rate: " + str(rate_thresh)
-
 	return render_template("index.html")
 
 @app.route("/dashboard")

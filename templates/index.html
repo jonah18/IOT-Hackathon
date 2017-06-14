@@ -71,10 +71,10 @@
             <div class="container-fluid">
                 <div class="row">
                     <div id="config" style='display:block;'>
-                        <form action="/" method="POST">
+                        <form action="{{ url_for('index') }}" method="post">
 
                             <h2>Max Byte Size:</h2>
-                            <select name="cars">
+                            <select name="byte">
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="30" selected>30</option>
@@ -85,7 +85,7 @@
                             </br>
 
                             <h2>Max Rate of Network Traffic:</h2>
-                           <select name="cars">
+                           <select name="rate">
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="30" selected>30</option>
