@@ -23,7 +23,7 @@ def index():
 	for doc in res['hits']['hits']:
 		print("%s) %s" % (doc['_id'], doc['_source']))
 
-	return "Hi"
+	return res
 
 if __name__ == "__main__":
     app.run()
