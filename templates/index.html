@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Firehive</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -35,7 +35,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Start Bootstrap
+                        Firehive
                     </a>
                 </li>
                 <li>
@@ -48,7 +48,7 @@
                     <a href="#">Overview</a>
                 </li>
                 <li>
-                    <a href="#">Events</a>
+                    <a href="#">Account</a>
                 </li>
                 <li>
                     <a href="#">About</a>
@@ -59,6 +59,8 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}">
             </ul>
         </div>
 
@@ -71,12 +73,47 @@
                     <div id="config" style='display:block;'>
                         <form action="/" method="POST">
 
-                            Max Byte Size:
-                            <input type="text" name="byte" value="{{ request.form['byte'] }}"></br>
+                            <h2>Max Byte Size:</h2>
+                            <select name="cars">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30" selected>30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                            </br>
+                            </br>
 
-                            Max Rate of Network Traffic:
-                            <input type="text" name="rate" value="{{ request.form['rate'] }}">
-                            <input type="submit" name="my-form" value="Save">
+                            <h2>Max Rate of Network Traffic:</h2>
+                           <select name="cars">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30" selected>30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                            </br>
+                            </br>
+
+                            <h2>Security Level</h2>
+                            <select name="sec_flags">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high" selected>High</option>
+                            </select>
+                            </br>
+                            </br>
+
+                            <h2>Protocols Allowed:</h2></br>
+                            Zigbee <input type="checkbox" value="Zigbee" checked></br>
+                            Wifi <input type="checkbox" value="Wifi" checked></br>
+                            Bluetooth <input type="checkbox" value="Bluetooth" checked></br>
+                            Ethernet <input type="checkbox" value="Ethernet" checked></br>
+                            ANT <input type="checkbox" value="ANT" checked></br>
+                            UDP <input type="checkbox" value="UDP" checked></br>
+
+                            <input type="submit" name="save" value="Save">
+
                         </form>
                     </div>
                     <div id="dashboard" style='display:none;'>

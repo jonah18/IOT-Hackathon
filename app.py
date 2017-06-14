@@ -6,12 +6,7 @@ import json
 byte_thresh = 20
 rate_thresh = 40
 
-
 app = Flask(__name__, template_folder="templates")
-
-@app.route("/dashboard")
-def dashboard():
-	return render_template("dashboard.html")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -20,7 +15,14 @@ def index():
 		byte_thresh = int(request.form['byte'])
 		rate_thresh = int(request.form['rate'])
 
+		print "Bytes: " + str(byte_thresh)
+		print "Rate: " + str(rate_thresh)
+
 	return render_template("index.html")
+
+@app.route("/dashboard")
+def dashboard():
+	return render_template("dashboard.html")
 
 
 @app.route('/data')
