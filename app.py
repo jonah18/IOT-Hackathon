@@ -18,10 +18,8 @@ def index():
     )
 
     res = es.get(index="zigbee-index", doc_type='zigbee')
-	print(res['_source'])
 
-
-    return res
+    return "Hi"
 
 if __name__ == "__main__":
     app.run()
