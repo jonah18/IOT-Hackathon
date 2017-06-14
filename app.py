@@ -1,13 +1,22 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 import json
 
+byte_thresh = 20
+rate_thresh = 40
+
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-	return "Welcome"
+
+	if request.method == "POST":
+		byte_thresh = int(request.form['byte'])
+		rate_thresh = int(request.form['rate'])
+
+	return render_template("index.html")
+
 
 @app.route('/data')
 def data():
@@ -23,9 +32,6 @@ def data():
 	)
 
 	res = es.search(index="zigbee-index", doc_type="zigbee", body={"query": {"match_all": {}}})
-
-	byte_thresh = 20
-	rate_thresh = 40
 	
 	byte_ave = 0
 	rate_ave = 0
@@ -46,7 +52,6 @@ def data():
 
 	if rate_ave > rate_thresh:
 		results['code'] = 1
-
 
 	"""
 	Codes:
