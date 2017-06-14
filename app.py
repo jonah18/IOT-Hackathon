@@ -17,7 +17,11 @@ def index():
         connection_class=RequestsHttpConnection
     )
 
-    res = es.get(index="zigbee-index", doc_type='zigbee')
+	res = es.search(index="zigbee-index", doc_type="zigbee", body={"query": {"match_all": {}}})
+	print("%d documents found" % res['hits']['total'])
+
+	for doc in res['hits']['hits']:
+		print("%s) %s" % (doc['_id'], doc['_source']))
 
     return "Hi"
 
