@@ -42,8 +42,8 @@ def get():
 # call high both
 # post(50, 50)
 
-t = threading.Timer(1, get)
-t.start()
+#t = threading.Timer(1, get)
+#t.start()
 
 # call normal both
 """
