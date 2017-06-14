@@ -1,7 +1,7 @@
 import random
 import threading
-from es_wrapper.general.formats import current_utc_time
 import requests
+from es_wrapper.general.formats import current_utc_time
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 
@@ -28,10 +28,11 @@ def post(byterange, raterange, counter):
 
 
 def get():
-    url = 'https://search-houseshark-ixotnqxkzathhe3en6ql2egzha.us-east-1.es.amazonaws.com/query'
+    url = 'https://firehive.herokuapp.com/'
     r = requests.get(url)
-    print r
+    # print r.content
     return r
+    # will need to add functionality to respond to get data...
 
 # call high byte length post
 # post(50, 10)
