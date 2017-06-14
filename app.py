@@ -47,15 +47,17 @@ def data():
 
 	# Compute averages for byte length and data rate over all data
 	for doc in res['hits']['hits']:
-		byte_ave += doc['_source']['byte_length']
-		rate_ave += doc['_source']['data_rate']
 
-	byte_ave /= entries
-	rate_ave /= entries
+		if 'byte_length' in doc['_source']:
+			byte_ave += doc['_source']['byte_length']
+			rate_ave += doc['_source']['data_rate']
 
 	results = {
 		"code": 0
 	}
+
+	byte_ave /= entries
+	rate_ave /= entries
 
 	if rate_ave > rate_thresh:
 		results['code'] = 1
