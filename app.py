@@ -21,8 +21,8 @@ def index():
 
 @app.route('/data')
 def data():
-	host = 'search-houseshark-ixotnqxkzathhe3en6ql2egzha.us-east-1.es.amazonaws.com'
-	awsauth = AWS4Auth('AKIAI7S7SHF547UFU5MA', '1tm6QTj6EgNy5lx//F3IHwmkSoaVBtzEuaqh+Yu6', 'us-east-1', 'es')
+    host =
+    awsauth =
 
 	es = Elasticsearch(
 		hosts=[{'host': host, 'port': 443}],

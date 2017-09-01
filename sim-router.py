@@ -7,8 +7,8 @@ from requests_aws4auth import AWS4Auth
 
 
 def post(byte_lengths, rates, counter):
-    host = 'search-houseshark-ixotnqxkzathhe3en6ql2egzha.us-east-1.es.amazonaws.com'
-    awsauth = AWS4Auth('AKIAI7S7SHF547UFU5MA', '1tm6QTj6EgNy5lx//F3IHwmkSoaVBtzEuaqh+Yu6', 'us-east-1', 'es')
+    host = 
+    awsauth = 
 
     es = Elasticsearch(
         hosts=[{'host': host, 'port': 443}],
@@ -39,11 +39,9 @@ get()
 
 
 # call normal both
-"""
-for x in range(60, 70):
+for x in range(30, 50):
     post((0, 20), (0, 40), x)
-for x in range(70, 80):
+for x in range(50, 70):
     post((40, 60), (40, 80), x)
-for x in range(80, 90):
+for x in range(70, 90):
     post((0, 20), (0, 40), x)
-"""
