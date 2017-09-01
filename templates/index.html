@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Firehive</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -28,27 +28,27 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Start Bootstrap
+                        Firehive
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a onclick="toggle()">Dashboard</a>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <a onclick="toggle()">Configurations</a>
                 </li>
                 <li>
                     <a href="#">Overview</a>
                 </li>
                 <li>
-                    <a href="#">Events</a>
+                    <a href="#">Account</a>
                 </li>
                 <li>
                     <a href="#">About</a>
@@ -59,19 +59,65 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}">
             </ul>
         </div>
+
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    <div id="config" style='display:block;'>
+                        <form action="{{ url_for('index') }}" method="post">
+
+                            <h2>Max Byte Size:</h2>
+                            <select name="byte">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30" selected>30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                            </br>
+                            </br>
+
+                            <h2>Max Rate of Network Traffic:</h2>
+                           <select name="rate">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30" selected>30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                            </br>
+                            </br>
+
+                            <h2>Security Level</h2>
+                            <select name="sec_flags">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high" selected>High</option>
+                            </select>
+                            </br>
+                            </br>
+
+                            <h2>Protocols Allowed:</h2></br>
+                            Zigbee <input type="checkbox" value="Zigbee" checked></br>
+                            Wifi <input type="checkbox" value="Wifi" checked></br>
+                            Bluetooth <input type="checkbox" value="Bluetooth" checked></br>
+                            Ethernet <input type="checkbox" value="Ethernet" checked></br>
+                            ANT <input type="checkbox" value="ANT" checked></br>
+                            UDP <input type="checkbox" value="UDP" checked></br>
+
+                            <input type="submit" name="save" value="Save">
+
+                        </form>
+                    </div>
+                    <div id="dashboard" style='display:none;'>
+                        <iframe src="https://search-houseshark-ixotnqxkzathhe3en6ql2egzha.us-east-1.es.amazonaws.com/_plugin/kibana/app/kibana#/dashboard/c852dc70-50d1-11e7-a25d-09f5e0eb4084?embed=true&_g=(refreshInterval%3A('%24%24hashKey'%3A'object%3A2189'%2Cdisplay%3A'5%20seconds'%2Cpause%3A!f%2Csection%3A1%2Cvalue%3A5000)%2Ctime%3A(from%3A'2017-06-13T19%3A56%3A10.738Z'%2Cinterval%3A'1s'%2Cmode%3Aabsolute%2Ctimezone%3AAmerica%2FMexico_City%2Cto%3A'2017-06-13T19%3A56%3A31.118Z'))" height="650" width="1000"></iframe>
                     </div>
                 </div>
             </div>
@@ -87,12 +133,17 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+    <script type="text/javascript">
+
+        function toggle() {
+            var dash = document.getElementById('dashboard');
+            var config = document.getElementById('config');
+
+            var temp = dash.style.display;
+            dash.style.display = config.style.display;
+            config.style.display = temp;
+        }
+
     </script>
 
 </body>

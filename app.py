@@ -6,7 +6,6 @@ import json
 byte_thresh = 20
 rate_thresh = 40
 
-
 app = Flask(__name__, template_folder="templates")
 
 @app.route("/", methods=["GET", "POST"])
@@ -17,6 +16,10 @@ def index():
 		rate_thresh = int(request.form['rate'])
 
 	return render_template("index.html")
+
+@app.route("/dashboard")
+def dashboard():
+	return render_template("dashboard.html")
 
 
 @app.route('/data')
@@ -41,15 +44,17 @@ def data():
 
 	# Compute averages for byte length and data rate over all data
 	for doc in res['hits']['hits']:
-		byte_ave += doc['_source']['byte_length']
-		rate_ave += doc['_source']['data_rate']
 
-	byte_ave /= entries
-	rate_ave /= entries
+		if 'byte_length' in doc['_source']:
+			byte_ave += doc['_source']['byte_length']
+			rate_ave += doc['_source']['data_rate']
 
 	results = {
 		"code": 0
 	}
+
+	byte_ave /= entries
+	rate_ave /= entries
 
 	if rate_ave > rate_thresh:
 		results['code'] = 1
