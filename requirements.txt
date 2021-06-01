@@ -37,7 +37,7 @@ sh==1.11
 singledispatch==3.4.0.3
 six==1.4.1
 tornado==4.5.1
-urllib3==1.21.1
+urllib3==1.26.5
 virtualenv==15.1.0
 Werkzeug==0.12.2
 wget==3.2
